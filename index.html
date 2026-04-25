@@ -1,2 +1,634 @@
+<!DOCTYPE html>
 
-https://github.com/sajeevexin-cmyk/jerusalem-properties/edit/main/index.html
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerusalem Properties LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-dark:#8B6914;--dark:#0F0E0B;--dark2:#1A1814;--dark3:#252219;--dark4:#302D22;--text:#F0EAD6;--muted:#9A9280;--green:#4CAF7D;--red:#E05C5C;--blue:#5B9BD5;--orange:#E0944A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);min-height:100vh;}
+/* LOGIN */
+.lp{position:fixed;inset:0;z-index:999;background:var(--dark);display:flex;align-items:stretch;}
+.ll{flex:1;background:linear-gradient(135deg,#1A1610,#0F0E0B);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;border-right:1px solid rgba(201,168,76,.15);position:relative;overflow:hidden;}
+.ll::after{content:'🏛️';position:absolute;font-size:280px;opacity:.04;bottom:-40px;right:-30px;}
+.logo-wrap{text-align:center;position:relative;z-index:1;}
+.logo-box{width:72px;height:72px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 8px 28px rgba(201,168,76,.35);}
+.logo-name{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);}
+.logo-sub{font-size:12px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:36px;}
+.lf{display:flex;flex-direction:column;gap:12px;width:100%;max-width:300px;}
+.lf-item{display:flex;align-items:center;gap:12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);border-radius:11px;padding:12px 16px;}
+.lf-item span{font-size:18px;}
+.lf-item p{font-size:12px;color:var(--muted);}
+.lf-item p b{color:var(--text);display:block;font-size:13px;}
+.lr{width:420px;display:flex;align-items:center;justify-content:center;padding:48px 40px;background:var(--dark2);}
+.lrw{width:100%;}
+.lt{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:4px;}
+.ls{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.rpills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.rp{padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid;transition:all .2s;}
+.rp.a{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);}
+.rp.m{border-color:var(--blue);color:var(--blue);background:rgba(91,155,213,.08);}
+.rp.v{border-color:var(--green);color:var(--green);background:rgba(76,175,125,.08);}
+.lg{margin-bottom:14px;}
+.lg label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.iw{position:relative;}
+.ii{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;}
+.lg input{width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:12px 12px 12px 40px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border .2s;}
+.lg input:focus{border-color:var(--gold);}
+.lrem{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;font-size:13px;color:var(--muted);}
+.lrem label{display:flex;align-items:center;gap:7px;cursor:pointer;}
+.btnl{width:100%;padding:13px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--dark);font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 5px 18px rgba(201,168,76,.3);}
+.btnl:hover{transform:translateY(-1px);}
+.lerr{background:rgba(224,92,92,.12);border:1px solid rgba(224,92,92,.3);border-radius:9px;padding:10px 13px;font-size:13px;color:var(--red);margin-bottom:14px;display:none;}
+.lerr.show{display:block;}
+.hint{text-align:center;margin-top:14px;font-size:11px;color:var(--muted);background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);border-radius:9px;padding:9px;}
+.hint b{color:var(--gold);}
+/* APP */
+#app{display:none;width:100%;}
+.layout{display:flex;min-height:100vh;}
+/* SIDEBAR */
+.sb{width:240px;min-height:100vh;background:var(--dark2);border-right:1px solid rgba(201,168,76,.15);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;}
+.sblogo{padding:22px 20px;border-bottom:1px solid rgba(201,168,76,.12);}
+.sbli{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:8px;}
+.sbn{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--gold);}
+.sbs{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;}
+.sbnav{padding:12px 10px;flex:1;overflow-y:auto;}
+.nl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:6px 10px;margin-top:6px;}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .2s;margin-bottom:2px;}
+.ni:hover{background:var(--dark3);color:var(--text);}
+.ni.active{background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.08));color:var(--gold);font-weight:500;border:1px solid rgba(201,168,76,.2);}
+.nic{font-size:16px;width:20px;text-align:center;}
+.bdg{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:20px;}
+.bdg.g{background:var(--gold);color:var(--dark);}
+.sbfoot{padding:14px 16px;border-top:1px solid rgba(201,168,76,.12);}
+.uc{display:flex;align-items:center;gap:9px;background:var(--dark3);padding:9px 11px;border-radius:9px;}
+.uav{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--dark);}
+.ua{background:linear-gradient(135deg,var(--gold),var(--gold-dark));}
+.um{background:linear-gradient(135deg,var(--blue),#3a7bc8);}
+.uv{background:linear-gradient(135deg,var(--green),#2e8a5e);}
+/* MAIN */
+.mn{margin-left:240px;flex:1;min-height:100vh;}
+.tb{padding:18px 28px;border-bottom:1px solid rgba(201,168,76,.1);display:flex;align-items:center;justify-content:space-between;background:var(--dark);position:sticky;top:0;z-index:50;}
+.tbt{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;}
+.tbr{display:flex;align-items:center;gap:10px;}
+.btn{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:all .2s;}
+.btng{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--dark);box-shadow:0 3px 10px rgba(201,168,76,.25);}
+.btng:hover{transform:translateY(-1px);}
+.btngh{background:var(--dark3);color:var(--muted);border:1px solid rgba(255,255,255,.07);}
+.btngh:hover{color:var(--text);}
+.btnr{background:rgba(224,92,92,.15);color:var(--red);border:1px solid rgba(224,92,92,.3);}
+.ct{padding:24px 28px;}
+.sec{display:none;animation:fi .3s ease;}
+.sec.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.sc{background:var(--dark2);border:1px solid rgba(201,168,76,.1);border-radius:12px;padding:18px;transition:transform .2s;}
+.sc:hover{transform:translateY(-2px);}
+.scl{font-size:11px;color:var(--muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:1px;}
+.scv{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;}
+.sci{font-size:20px;margin-bottom:8px;}
+/* CARD */
+.card{background:var(--dark2);border:1px solid rgba(201,168,76,.1);border-radius:12px;overflow:hidden;margin-bottom:18px;}
+.ch{padding:16px 20px;border-bottom:1px solid rgba(201,168,76,.08);display:flex;align-items:center;justify-content:space-between;}
+.ct2{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;}
+table{width:100%;border-collapse:collapse;}
+th{padding:11px 20px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);background:rgba(201,168,76,.04);font-weight:500;}
+td{padding:13px 20px;font-size:13px;border-top:1px solid rgba(255,255,255,.04);}
+tr:hover td{background:rgba(201,168,76,.03);}
+.pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;}
+.pg{background:rgba(76,175,125,.15);color:var(--green);}
+.pr{background:rgba(224,92,92,.15);color:var(--red);}
+.po{background:rgba(224,148,74,.15);color:var(--orange);}
+.pb{background:rgba(91,155,213,.15);color:var(--blue);}
+.pgo{background:rgba(201,168,76,.15);color:var(--gold);}
+.tc{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.lr2{color:var(--muted);text-align:center;padding:24px;}
+/* PROPERTY GRID */
+.pg2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px;}
+.pc{background:var(--dark2);border:1px solid rgba(201,168,76,.1);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.pc:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.4);}
+.pi{height:120px;background:linear-gradient(135deg,var(--dark3),var(--dark4));display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;}
+.ps{position:absolute;top:8px;right:8px;}
+.pb2{padding:14px;}
+.pn{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;margin-bottom:3px;}
+.pa{font-size:11px;color:var(--muted);margin-bottom:10px;}
+.pm{display:flex;gap:12px;font-size:11px;color:var(--muted);}
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:200;align-items:center;justify-content:center;}
+.mo.open{display:flex;}
+.md{background:var(--dark2);border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:24px;width:460px;max-width:95vw;animation:fi .2s ease;max-height:90vh;overflow-y:auto;}
+.mdt{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--gold);margin-bottom:18px;}
+.fg{margin-bottom:12px;}
+.fg label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg select option{background:var(--dark3);}
+.fg textarea{resize:vertical;min-height:70px;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ma{display:flex;gap:9px;margin-top:18px;justify-content:flex-end;}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(--dark2);border:1px solid rgba(201,168,76,.3);border-radius:11px;padding:12px 18px;font-size:13px;box-shadow:0 6px 24px rgba(0,0,0,.4);transform:translateY(60px);opacity:0;transition:all .3s ease;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.err{border-color:rgba(224,92,92,.4);}
+/* SPINNER */
+.sp{display:inline-block;width:15px;height:15px;border:2px solid rgba(201,168,76,.3);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* READONLY */
+.ron{background:rgba(91,155,213,.1);border:1px solid rgba(91,155,213,.2);border-radius:10px;padding:10px 16px;font-size:13px;color:var(--blue);margin-bottom:18px;display:none;}
+.ron.show{display:block;}
+/* QA */
+.qa{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px;}
+.qac{background:var(--dark2);border:1px solid rgba(201,168,76,.1);border-radius:12px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s;}
+.qac:hover{background:var(--dark3);border-color:rgba(201,168,76,.25);transform:translateY(-2px);}
+.qai{font-size:22px;margin-bottom:6px;}
+.qal{font-size:11px;color:var(--muted);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--dark2);}
+::-webkit-scrollbar-thumb{background:var(--dark4);border-radius:10px;}
+@media(max-width:700px){
+  .ll{display:none;}
+  .lr{width:100%;}
+  .sb{width:200px;}
+  .mn{margin-left:200px;}
+  .sg{grid-template-columns:repeat(2,1fr);}
+  .tc{grid-template-columns:1fr;}
+  .pg2{grid-template-columns:1fr 1fr;}
+  .qa{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+
+<div class="lp" id="loginPage">
+  <div class="ll">
+    <div class="logo-wrap">
+      <div class="logo-box">🏛️</div>
+      <div class="logo-name">Jerusalem Properties</div>
+      <div class="logo-sub">LLC · Management Portal</div>
+      <div class="lf">
+        <div class="lf-item"><span>👥</span><p><b>Tenant Management</b>Track payments & leases</p></div>
+        <div class="lf-item"><span>🔧</span><p><b>Maintenance Tracking</b>Log & resolve requests</p></div>
+        <div class="lf-item"><span>📊</span><p><b>Financial Overview</b>Tax, insurance & revenue</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="lr">
+    <div class="lrw">
+      <div class="lt">Welcome back 👋</div>
+      <div class="ls">Sign in to your management portal</div>
+      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">Quick login — select role:</div>
+      <div class="rpills">
+        <div class="rp a" onclick="fill('admin','admin123')">🔑 Admin</div>
+        <div class="rp m" onclick="fill('manager','manager1')">👔 Manager</div>
+        <div class="rp v" onclick="fill('viewer','viewer1')">👁️ Viewer</div>
+      </div>
+      <div class="lerr" id="lerr">⚠️ Incorrect username or password.</div>
+      <div class="lg"><label>Username</label><div class="iw"><span class="ii">👤</span><input type="text" id="lu" placeholder="Enter username"></div></div>
+      <div class="lg"><label>Password</label><div class="iw"><span class="ii">🔒</span><input type="password" id="lp" placeholder="Enter password"></div></div>
+      <div class="lrem"><label><input type="checkbox"> Remember me</label><span style="color:var(--gold);cursor:pointer;font-size:13px">Forgot password?</span></div>
+      <button class="btnl" onclick="login()">Sign In to Portal</button>
+      <div class="hint"><b>admin</b>/admin123 · <b>manager</b>/manager1 · <b>viewer</b>/viewer1</div>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+
+<div id="app">
+<div class="layout">
+<aside class="sb">
+  <div class="sblogo">
+    <div class="sbli">🏛️</div>
+    <div class="sbn">Jerusalem Properties</div>
+    <div class="sbs">LLC · Management</div>
+  </div>
+  <div class="sbnav">
+    <div class="nl">Main</div>
+    <div class="ni active" onclick="go('dashboard',this)"><span class="nic">📊</span> Dashboard</div>
+    <div class="nl">Management</div>
+    <div class="ni" onclick="go('tenants',this)"><span class="nic">👥</span> Tenants <span class="bdg" id="bT"></span></div>
+    <div class="ni" onclick="go('maintenance',this)"><span class="nic">🔧</span> Maintenance <span class="bdg" id="bM"></span></div>
+    <div class="ni" onclick="go('contractors',this)"><span class="nic">👷</span> Contractors</div>
+    <div class="nl">Finances</div>
+    <div class="ni" onclick="go('tax',this)"><span class="nic">📋</span> Property Tax</div>
+    <div class="ni" onclick="go('insurance',this)"><span class="nic">🛡️</span> Insurance</div>
+    <div class="nl">Listings</div>
+    <div class="ni" onclick="go('availability',this)"><span class="nic">🏠</span> Available Units <span class="bdg g" id="bA"></span></div>
+  </div>
+  <div class="sbfoot">
+    <div class="uc">
+      <div class="uav" id="uav">A</div>
+      <div style="flex:1"><div style="font-size:13px;color:var(--text);font-weight:500" id="unm">Admin</div><div style="font-size:10px;color:var(--muted)" id="url2">Administrator</div></div>
+      <span onclick="logout()" title="Sign out" style="cursor:pointer;font-size:15px;color:var(--muted)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">🚪</span>
+    </div>
+  </div>
+</aside>
+<div class="mn">
+  <div class="tb">
+    <div class="tbt" id="pt">Dashboard</div>
+    <div class="tbr">
+      <span class="pill" id="rb"></span>
+      <button class="btn btng" id="addBtn" onclick="openModal()" style="display:none">+ Add New</button>
+    </div>
+  </div>
+  <div class="ct">
+    <div class="ron" id="ron">👁️ <b>View Only</b> — Contact an Admin to make changes.</div>
+
+```
+<!-- DASHBOARD -->
+<div class="sec active" id="dashboard">
+  <div class="sg">
+    <div class="sc"><div class="sci">🏘️</div><div class="scl">Total Units</div><div class="scv" id="stu">—</div></div>
+    <div class="sc"><div class="sci">👥</div><div class="scl">Tenants</div><div class="scv" id="stt">—</div></div>
+    <div class="sc"><div class="sci">🔧</div><div class="scl">Open Requests</div><div class="scv" id="stm">—</div></div>
+    <div class="sc"><div class="sci">🏠</div><div class="scl">Available</div><div class="scv" id="sta">—</div></div>
+  </div>
+  <div class="qa">
+    <div class="qac" onclick="go('tenants',document.querySelectorAll('.ni')[1])"><div class="qai">💵</div><div class="qal">Tenants</div></div>
+    <div class="qac" onclick="go('maintenance',document.querySelectorAll('.ni')[2])"><div class="qai">🔧</div><div class="qal">Maintenance</div></div>
+    <div class="qac" onclick="go('contractors',document.querySelectorAll('.ni')[3])"><div class="qai">👷</div><div class="qal">Contractors</div></div>
+    <div class="qac" onclick="go('tax',document.querySelectorAll('.ni')[4])"><div class="qai">📋</div><div class="qal">Tax</div></div>
+    <div class="qac" onclick="go('availability',document.querySelectorAll('.ni')[6])"><div class="qai">🏠</div><div class="qal">Units</div></div>
+  </div>
+  <div class="tc">
+    <div class="card"><div class="ch"><div class="ct2">Recent Tenants</div></div>
+      <table><thead><tr><th>Name</th><th>Unit</th><th>Status</th></tr></thead>
+      <tbody id="dT"><tr><td colspan="3" class="lr2"><span class="sp"></span>Loading...</td></tr></tbody></table></div>
+    <div class="card"><div class="ch"><div class="ct2">Open Maintenance</div></div>
+      <table><thead><tr><th>Unit</th><th>Issue</th><th>Priority</th></tr></thead>
+      <tbody id="dM"><tr><td colspan="3" class="lr2"><span class="sp"></span>Loading...</td></tr></tbody></table></div>
+  </div>
+</div>
+
+<!-- TENANTS -->
+<div class="sec" id="tenants">
+  <div class="card"><div class="ch"><div class="ct2">All Tenants</div></div>
+    <table><thead><tr><th>Name</th><th>Unit</th><th>Lease End</th><th>Rent</th><th>Status</th><th id="hta"></th></tr></thead>
+    <tbody id="tT"><tr><td colspan="6" class="lr2"><span class="sp"></span></td></tr></tbody></table></div>
+</div>
+
+<!-- MAINTENANCE -->
+<div class="sec" id="maintenance">
+  <div class="card"><div class="ch"><div class="ct2">Maintenance Requests</div></div>
+    <table><thead><tr><th>Unit</th><th>Issue</th><th>Priority</th><th>Status</th><th>Assigned</th><th id="hma"></th></tr></thead>
+    <tbody id="tM"><tr><td colspan="6" class="lr2"><span class="sp"></span></td></tr></tbody></table></div>
+</div>
+
+<!-- CONTRACTORS -->
+<div class="sec" id="contractors">
+  <div class="card"><div class="ch"><div class="ct2">Contractor Directory</div></div>
+    <table><thead><tr><th>Company</th><th>Specialty</th><th>Phone</th><th>Rate</th><th>Rating</th><th>Status</th><th id="hca"></th></tr></thead>
+    <tbody id="tC"><tr><td colspan="7" class="lr2"><span class="sp"></span></td></tr></tbody></table></div>
+</div>
+
+<!-- TAX -->
+<div class="sec" id="tax">
+  <div class="card"><div class="ch"><div class="ct2">Property Tax Records</div></div>
+    <table><thead><tr><th>Property</th><th>Address</th><th>Annual Tax</th><th>Next Due</th><th>Status</th><th id="hta2"></th></tr></thead>
+    <tbody id="tX"><tr><td colspan="6" class="lr2"><span class="sp"></span></td></tr></tbody></table></div>
+</div>
+
+<!-- INSURANCE -->
+<div class="sec" id="insurance">
+  <div class="card"><div class="ch"><div class="ct2">Insurance Policies</div></div>
+    <table><thead><tr><th>Property</th><th>Provider</th><th>Policy #</th><th>Premium/yr</th><th>Expiry</th><th>Status</th><th id="hia"></th></tr></thead>
+    <tbody id="tI"><tr><td colspan="7" class="lr2"><span class="sp"></span></td></tr></tbody></table></div>
+</div>
+
+<!-- AVAILABILITY -->
+<div class="sec" id="availability">
+  <div class="pg2" id="tAv"><div style="grid-column:1/-1;text-align:center;padding:36px;color:var(--muted)"><span class="sp"></span> Loading...</div></div>
+</div>
+```
+
+  </div>
+</div>
+</div>
+</div>
+
+<!-- MODAL -->
+
+<div class="mo" id="modal">
+  <div class="md">
+    <div class="mdt" id="mdt">Add Record</div>
+    <div id="mdb"></div>
+    <div class="ma">
+      <button class="btn btngh" onclick="closeModal()">Cancel</button>
+      <button class="btn btng" onclick="saveRec()">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════
+// SUPABASE REST API (no SDK)
+// ═══════════════════════════
+var SURL='https://zdntzomlbajkynwoubin.supabase.co';
+var SKEY='sb_publishable_Hz-y5gEovUNMTpPmOEaTvg_16JC1YTv';
+
+function hdrs(extra){
+  return Object.assign({'apikey':SKEY,'Authorization':'Bearer '+SKEY,'Content-Type':'application/json'},extra||{});
+}
+
+function dbGet(table,order){
+  var url=SURL+'/rest/v1/'+table+'?select=*'+(order?'&order='+order+'.desc':'');
+  return fetch(url,{headers:hdrs()}).then(function(r){return r.json();}).then(function(d){return Array.isArray(d)?d:[];}).catch(function(){return[];});
+}
+
+function dbInsert(table,row){
+  return fetch(SURL+'/rest/v1/'+table,{
+    method:'POST',
+    headers:hdrs({'Prefer':'return=minimal'}),
+    body:JSON.stringify(row)
+  }).then(function(r){
+    if(r.ok) return {ok:true};
+    return r.json().then(function(e){return {ok:false,msg:e.message||e.details||'Save failed'};});
+  }).catch(function(e){return {ok:false,msg:e.message};});
+}
+
+function dbUpdate(table,id,row){
+  return fetch(SURL+'/rest/v1/'+table+'?id=eq.'+id,{
+    method:'PATCH',
+    headers:hdrs({'Prefer':'return=minimal'}),
+    body:JSON.stringify(row)
+  }).then(function(r){
+    if(r.ok) return {ok:true};
+    return r.json().then(function(e){return {ok:false,msg:e.message||'Update failed'};});
+  }).catch(function(e){return {ok:false,msg:e.message};});
+}
+
+function dbDelete(table,id){
+  return fetch(SURL+'/rest/v1/'+table+'?id=eq.'+id,{
+    method:'DELETE',headers:hdrs()
+  }).then(function(r){return {ok:r.ok};}).catch(function(e){return {ok:false,msg:e.message};});
+}
+
+// ═══════════════════════════
+// USERS & ROLES
+// ═══════════════════════════
+var USERS={
+  admin:  {pass:'admin123',role:'admin',  label:'Administrator',av:'ua', badge:'🔑 Admin',  bc:'pgo'},
+  manager:{pass:'manager1',role:'manager',label:'Manager',      av:'um', badge:'👔 Manager',bc:'pb'},
+  viewer: {pass:'viewer1', role:'viewer', label:'View Only',    av:'uv', badge:'👁️ Viewer', bc:'pg'}
+};
+var CU=null, CS='dashboard', EID=null;
+function cw(){return CU&&(CU.role==='admin'||CU.role==='manager');}
+function cd(){return CU&&CU.role==='admin';}
+
+// ═══════════════════════════
+// LOGIN / LOGOUT
+// ═══════════════════════════
+function fill(u,p){document.getElementById('lu').value=u;document.getElementById('lp').value=p;}
+function login(){
+  var u=document.getElementById('lu').value.trim().toLowerCase();
+  var p=document.getElementById('lp').value.trim();
+  var err=document.getElementById('lerr');
+  if(USERS[u]&&USERS[u].pass===p){
+    CU=Object.assign({username:u},USERS[u]);
+    err.classList.remove('show');
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('app').style.display='block';
+    setupUI();
+    loadAll();
+  } else {
+    err.classList.add('show');
+    document.getElementById('lp').value='';
+  }
+}
+function logout(){
+  CU=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('lu').value='';
+  document.getElementById('lp').value='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&document.getElementById('loginPage').style.display!=='none') login();
+});
+
+// ═══════════════════════════
+// UI SETUP
+// ═══════════════════════════
+var SEC_TITLES={dashboard:'Dashboard',tenants:'Tenants & Payments',maintenance:'Maintenance Requests',contractors:'Contractors',tax:'Property Tax',insurance:'Insurance',availability:'Available Units'};
+
+function setupUI(){
+  var u=CU;
+  var av=document.getElementById('uav');
+  av.textContent=u.username[0].toUpperCase();
+  av.className='uav '+u.av;
+  document.getElementById('unm').textContent=u.username.charAt(0).toUpperCase()+u.username.slice(1);
+  document.getElementById('url2').textContent=u.label;
+  var rb=document.getElementById('rb');
+  rb.textContent=u.badge; rb.className='pill '+u.bc;
+  document.getElementById('addBtn').style.display=cw()?'block':'none';
+  document.getElementById('ron').classList.toggle('show',!cw());
+  ['hta','hma','hca','hta2','hia'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=cw()?'Actions':'';});
+}
+
+function go(id,el){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active');});
+  el.classList.add('active');
+  document.getElementById('pt').textContent=SEC_TITLES[id];
+  CS=id;
+}
+
+// ═══════════════════════════
+// TOAST
+// ═══════════════════════════
+function toast(msg,isErr){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast show'+(isErr?' err':'');
+  setTimeout(function(){t.className='toast';},3000);
+}
+
+// ═══════════════════════════
+// PILL
+// ═══════════════════════════
+var PM={Paid:'pg',Active:'pg',Available:'pg',Current:'pg',Open:'pgo',Urgent:'pr',Overdue:'pr',Expired:'pr',Pending:'po','Due Soon':'po','Renew Soon':'po','On Job':'po','In Progress':'po','Coming Soon':'po',Scheduled:'pb',Medium:'po',Low:'pb','Under Maintenance':'pr'};
+function pill(s){return '<span class="pill '+(PM[s]||'pgo')+'">'+(s||'—')+'</span>';}
+function abtn(id,sec){
+  if(!cw()) return '';
+  return '<button class="btn btngh" style="padding:4px 9px;font-size:11px;margin-right:3px" onclick="editRec(\''+id+'\',\''+sec+'\')">✏️</button>'
+    +(cd()?'<button class="btn btnr" style="padding:4px 9px;font-size:11px" onclick="delRec(\''+id+'\',\''+sec+'\')">🗑️</button>':'');
+}
+
+// ═══════════════════════════
+// LOAD ALL
+// ═══════════════════════════
+function loadAll(){loadT();loadM();loadC();loadX();loadI();loadAv();}
+
+function loadT(){
+  dbGet('tenants','created_at').then(function(data){
+    document.getElementById('stt').textContent=data.length;
+    var ov=data.filter(function(t){return t.status==='Overdue';}).length;
+    document.getElementById('bT').textContent=ov||'';
+    var html=data.length?data.map(function(t){
+      return '<tr><td>'+t.first_name+' '+t.last_name+'</td><td>'+(t.unit||'—')+'</td><td>'+(t.lease_end||'—')+'</td><td>'+(t.rent?'$'+Number(t.rent).toLocaleString():'—')+'</td><td>'+pill(t.status)+'</td><td>'+abtn(t.id,'tenants')+'</td></tr>';
+    }).join(''):'<tr><td colspan="6" class="lr2">No tenants yet. Tap "+ Add New".</td></tr>';
+    document.getElementById('tT').innerHTML=html;
+    document.getElementById('dT').innerHTML=data.slice(0,4).map(function(t){
+      return '<tr><td>'+t.first_name+' '+t.last_name+'</td><td>'+(t.unit||'—')+'</td><td>'+pill(t.status)+'</td></tr>';
+    }).join('')||'<tr><td colspan="3" class="lr2">No tenants yet.</td></tr>';
+  });
+}
+
+function loadM(){
+  dbGet('maintenance','created_at').then(function(data){
+    var open=data.filter(function(m){return m.status==='Open'||m.status==='In Progress'||m.status==='Scheduled';}).length;
+    document.getElementById('stm').textContent=open;
+    document.getElementById('bM').textContent=open||'';
+    document.getElementById('tM').innerHTML=data.length?data.map(function(m){
+      return '<tr><td>'+(m.unit||'—')+'</td><td>'+(m.issue||'—')+'</td><td>'+pill(m.priority)+'</td><td>'+pill(m.status)+'</td><td>'+(m.assigned_to||'—')+'</td><td>'+abtn(m.id,'maintenance')+'</td></tr>';
+    }).join(''):'<tr><td colspan="6" class="lr2">No maintenance requests yet.</td></tr>';
+    document.getElementById('dM').innerHTML=data.slice(0,4).map(function(m){
+      return '<tr><td>'+(m.unit||'—')+'</td><td>'+(m.issue||'—')+'</td><td>'+pill(m.priority)+'</td></tr>';
+    }).join('')||'<tr><td colspan="3" class="lr2">No requests yet.</td></tr>';
+  });
+}
+
+function loadC(){
+  dbGet('contractors','created_at').then(function(data){
+    document.getElementById('tC').innerHTML=data.length?data.map(function(c){
+      return '<tr><td>'+(c.company_name||'—')+'</td><td>'+(c.specialty||'—')+'</td><td>'+(c.phone||'—')+'</td><td>'+(c.hourly_rate?'$'+c.hourly_rate+'/hr':'—')+'</td><td>'+(c.rating?'⭐ '+c.rating:'—')+'</td><td>'+pill(c.status)+'</td><td>'+abtn(c.id,'contractors')+'</td></tr>';
+    }).join(''):'<tr><td colspan="7" class="lr2">No contractors yet.</td></tr>';
+  });
+}
+
+function loadX(){
+  dbGet('property_tax','created_at').then(function(data){
+    document.getElementById('tX').innerHTML=data.length?data.map(function(t){
+      return '<tr><td>'+(t.property_name||'—')+'</td><td>'+(t.address||'—')+'</td><td>'+(t.annual_tax?'$'+Number(t.annual_tax).toLocaleString():'—')+'</td><td>'+(t.next_due||'—')+'</td><td>'+pill(t.status)+'</td><td>'+abtn(t.id,'tax')+'</td></tr>';
+    }).join(''):'<tr><td colspan="6" class="lr2">No tax records yet.</td></tr>';
+  });
+}
+
+function loadI(){
+  dbGet('insurance','created_at').then(function(data){
+    document.getElementById('tI').innerHTML=data.length?data.map(function(i){
+      return '<tr><td>'+(i.property_name||'—')+'</td><td>'+(i.provider||'—')+'</td><td>'+(i.policy_number||'—')+'</td><td>'+(i.annual_premium?'$'+Number(i.annual_premium).toLocaleString():'—')+'</td><td>'+(i.expiry_date||'—')+'</td><td>'+pill(i.status)+'</td><td>'+abtn(i.id,'insurance')+'</td></tr>';
+    }).join(''):'<tr><td colspan="7" class="lr2">No insurance records yet.</td></tr>';
+  });
+}
+
+function loadAv(){
+  dbGet('available_units','created_at').then(function(data){
+    var av=data.filter(function(u){return u.status==='Available';}).length;
+    document.getElementById('sta').textContent=av;
+    document.getElementById('stu').textContent=data.length;
+    document.getElementById('bA').textContent=av||'';
+    var icons={'Available':'🏢','Coming Soon':'🏗️','Under Maintenance':'🔧'};
+    document.getElementById('tAv').innerHTML=data.length?data.map(function(u){
+      return '<div class="pc"><div class="pi">'+(icons[u.status]||'🏠')+'<span class="ps">'+pill(u.status)+'</span></div><div class="pb2"><div class="pn">'+(u.unit_name||'—')+'</div><div class="pa">'+(u.address||'—')+'</div><div style="font-family:\'Playfair Display\',serif;font-size:18px;color:var(--gold);margin-bottom:8px">'+(u.monthly_rent?'$'+Number(u.monthly_rent).toLocaleString()+'/mo':'—')+'</div><div class="pm"><span>🛏️ '+(u.bedrooms||0)+'</span><span>🚿 '+(u.bathrooms||0)+'</span><span>📐 '+(u.sqft?u.sqft.toLocaleString()+' sqft':'—')+'</span></div>'+(cw()?'<div style="margin-top:10px">'+abtn(u.id,'availability')+'</div>':'')+'</div></div>';
+    }).join(''):'<div style="grid-column:1/-1;text-align:center;padding:36px;color:var(--muted)">No units listed yet. Tap "+ Add New".</div>';
+  });
+}
+
+var LOADERS={tenants:loadT,maintenance:loadM,contractors:loadC,tax:loadX,insurance:loadI,availability:loadAv};
+
+// ═══════════════════════════
+// FORMS
+// ═══════════════════════════
+var FORMS={
+  tenants:{title:'Tenant',
+    html:'<div class="fr"><div class="fg"><label>First Name</label><input id="f0" placeholder="Ahmed"></div><div class="fg"><label>Last Name</label><input id="f1" placeholder="Al-Rashid"></div></div><div class="fr"><div class="fg"><label>Unit #</label><input id="f2" placeholder="101"></div><div class="fg"><label>Monthly Rent ($)</label><input id="f3" type="number" placeholder="1800"></div></div><div class="fr"><div class="fg"><label>Lease Start</label><input id="f4" type="date"></div><div class="fg"><label>Lease End</label><input id="f5" type="date"></div></div><div class="fg"><label>Status</label><select id="f6"><option>Paid</option><option>Pending</option><option>Overdue</option></select></div><div class="fg"><label>Notes</label><textarea id="f7" placeholder="Any notes..."></textarea></div>',
+
+```
+keys:['first_name','last_name','unit','rent','lease_start','lease_end','status','notes']},
+```
+
+maintenance:{title:‘Maintenance Request’,
+html:’<div class="fr"><div class="fg"><label>Unit #</label><input id="f0" placeholder="105"></div><div class="fg"><label>Tenant Name</label><input id="f1" placeholder="Name"></div></div><div class="fg"><label>Issue</label><textarea id="f2" placeholder="Describe issue..."></textarea></div><div class="fr"><div class="fg"><label>Priority</label><select id="f3"><option>Urgent</option><option>Medium</option><option>Low</option></select></div><div class="fg"><label>Status</label><select id="f4"><option>Open</option><option>In Progress</option><option>Scheduled</option><option>Resolved</option></select></div></div><div class="fg"><label>Assigned To</label><input id="f5" placeholder="Contractor name"></div>’,
+keys:[‘unit’,‘tenant_name’,‘issue’,‘priority’,‘status’,‘assigned_to’]},
+contractors:{title:‘Contractor’,
+html:’<div class="fg"><label>Company Name</label><input id="f0" placeholder="Mike\'s Plumbing Co."></div><div class="fr"><div class="fg"><label>Specialty</label><select id="f1"><option>Plumbing</option><option>HVAC</option><option>Electrical</option><option>Paint/Drywall</option><option>Locks/Security</option><option>Landscaping</option><option>General</option></select></div><div class="fg"><label>Hourly Rate ($)</label><input id="f2" type="number" placeholder="95"></div></div><div class="fr"><div class="fg"><label>Phone</label><input id="f3" placeholder="(555) 000-0000"></div><div class="fg"><label>Email</label><input id="f4" type="email" placeholder="email@example.com"></div></div><div class="fr"><div class="fg"><label>Rating (1-5)</label><input id="f5" type="number" min="1" max="5" step="0.1" placeholder="4.8"></div><div class="fg"><label>Status</label><select id="f6"><option>Available</option><option>On Job</option><option>Inactive</option></select></div></div>’,
+keys:[‘company_name’,‘specialty’,‘hourly_rate’,‘phone’,‘email’,‘rating’,‘status’]},
+tax:{title:‘Tax Record’,
+html:’<div class="fg"><label>Property Name</label><input id="f0" placeholder="Olive Garden Apts"></div><div class="fg"><label>Address</label><input id="f1" placeholder="142 Cedar Blvd"></div><div class="fr"><div class="fg"><label>Assessed Value ($)</label><input id="f2" type="number" placeholder="1200000"></div><div class="fg"><label>Annual Tax ($)</label><input id="f3" type="number" placeholder="18000"></div></div><div class="fr"><div class="fg"><label>Last Paid</label><input id="f4" type="date"></div><div class="fg"><label>Next Due</label><input id="f5" type="date"></div></div><div class="fg"><label>Status</label><select id="f6"><option>Current</option><option>Due Soon</option><option>Overdue</option></select></div>’,
+keys:[‘property_name’,‘address’,‘assessed_value’,‘annual_tax’,‘last_paid’,‘next_due’,‘status’]},
+insurance:{title:‘Insurance Policy’,
+html:’<div class="fg"><label>Property Name</label><input id="f0" placeholder="Zion Tower"></div><div class="fr"><div class="fg"><label>Provider</label><input id="f1" placeholder="StateFarm"></div><div class="fg"><label>Policy Number</label><input id="f2" placeholder="SF-2041-A"></div></div><div class="fr"><div class="fg"><label>Coverage ($)</label><input id="f3" type="number" placeholder="2000000"></div><div class="fg"><label>Annual Premium ($)</label><input id="f4" type="number" placeholder="6200"></div></div><div class="fr"><div class="fg"><label>Expiry Date</label><input id="f5" type="date"></div><div class="fg"><label>Status</label><select id="f6"><option>Active</option><option>Renew Soon</option><option>Expired</option></select></div></div>’,
+keys:[‘property_name’,‘provider’,‘policy_number’,‘coverage’,‘annual_premium’,‘expiry_date’,‘status’]},
+availability:{title:‘Available Unit’,
+html:’<div class="fg"><label>Unit / Property Name</label><input id="f0" placeholder="Unit 209 — Zion Tower"></div><div class="fg"><label>Address</label><input id="f1" placeholder="88 Highland Ave, Unit 209"></div><div class="fr"><div class="fg"><label>Monthly Rent ($)</label><input id="f2" type="number" placeholder="2200"></div><div class="fg"><label>Status</label><select id="f3"><option>Available</option><option>Coming Soon</option><option>Under Maintenance</option></select></div></div><div class="fr"><div class="fg"><label>Bedrooms</label><input id="f4" type="number" placeholder="2"></div><div class="fg"><label>Bathrooms</label><input id="f5" type="number" placeholder="1"></div></div><div class="fg"><label>Square Footage</label><input id="f6" type="number" placeholder="950"></div>’,
+keys:[‘unit_name’,‘address’,‘monthly_rent’,‘status’,‘bedrooms’,‘bathrooms’,‘sqft’]}
+};
+
+var TBL={tenants:‘tenants’,maintenance:‘maintenance’,contractors:‘contractors’,tax:‘property_tax’,insurance:‘insurance’,availability:‘available_units’};
+
+function getRow(sec){
+var f=FORMS[sec], row={};
+f.keys.forEach(function(k,i){
+var el=document.getElementById(‘f’+i);
+if(el) row[k]=el.value.trim()||null;
+});
+return row;
+}
+
+function openModal(){
+if(!cw()){toast(‘⚠️ No permission to add records.’,true);return;}
+var sec=CS===‘dashboard’?‘tenants’:CS;
+if(!FORMS[sec]) return;
+EID=null;
+document.getElementById(‘mdt’).textContent=’+ Add ’+FORMS[sec].title;
+document.getElementById(‘mdb’).innerHTML=FORMS[sec].html;
+document.getElementById(‘modal’).classList.add(‘open’);
+}
+
+function editRec(id,sec){
+dbGet(TBL[sec]).then(function(data){
+var row=data.find(function(r){return r.id===id;});
+if(!row) return;
+EID=id; CS=sec;
+document.getElementById(‘mdt’).textContent=’✏️ Edit ’+FORMS[sec].title;
+document.getElementById(‘mdb’).innerHTML=FORMS[sec].html;
+FORMS[sec].keys.forEach(function(k,i){
+var el=document.getElementById(‘f’+i);
+if(el&&row[k]!=null) el.value=row[k];
+});
+document.getElementById(‘modal’).classList.add(‘open’);
+});
+}
+
+function saveRec(){
+var sec=CS===‘dashboard’?‘tenants’:CS;
+if(!FORMS[sec]) return;
+var row=getRow(sec);
+var tbl=TBL[sec];
+var promise=EID?dbUpdate(tbl,EID,row):dbInsert(tbl,row);
+promise.then(function(res){
+if(!res.ok){toast(’❌ ’+(res.msg||‘Error saving record’),true);return;}
+toast(EID?‘✅ Record updated!’:‘✅ Saved successfully!’);
+closeModal();
+LOADERS[sec]();
+});
+}
+
+function delRec(id,sec){
+if(!cd()){toast(‘⚠️ Only Admins can delete.’,true);return;}
+if(!confirm(‘Delete this record permanently?’)) return;
+dbDelete(TBL[sec],id).then(function(res){
+if(!res.ok){toast(‘❌ Delete failed’,true);return;}
+toast(‘🗑️ Record deleted.’);
+LOADERS[sec]();
+});
+}
+
+function closeModal(){document.getElementById(‘modal’).classList.remove(‘open’);EID=null;}
+document.getElementById(‘modal’).addEventListener(‘click’,function(e){if(e.target===document.getElementById(‘modal’))closeModal();});
+</script>
+
+</body>
+</html>
